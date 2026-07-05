@@ -3,6 +3,7 @@ import os
 import subprocess
 
 PYTHON311 = r"C:\Users\at376\AppData\Local\Programs\Python\Python311\python.exe"
+GIT_BASH = r"C:\Program Files\Git\git-bash.exe"
 
 if sys.executable.lower() != PYTHON311.lower():
     try:
@@ -60,6 +61,8 @@ def extract_app_name(command, keyword):
 def open_app(start_cmd):
     if start_cmd == "explorer":
         os.startfile("explorer.exe")
+    elif os.path.isfile(start_cmd):
+        os.startfile(start_cmd)
     else:
         subprocess.Popen(f'start "" {start_cmd}', shell=True)
 
@@ -82,6 +85,10 @@ def resolve_app(name, apps):
         "command prompt": "cmd",
         "terminal": "cmd",
         "google chrome": "chrome",
+        "power shell": "powershell",
+        "git-bash": "git bash",
+        "gitbash": "git bash",
+        "bash": "git bash",
     }
 
     if name in aliases:
@@ -106,6 +113,8 @@ def execute_command(command):
         "paint": {"start": "mspaint", "process": "mspaint.exe"},
         "explorer": {"start": "explorer", "process": "explorer.exe"},
         "cmd": {"start": "cmd", "process": "cmd.exe"},
+        "powershell": {"start": "powershell", "process": "powershell.exe"},
+        "git bash": {"start": GIT_BASH, "process": "mintty.exe"},
     }
 
     # OPEN APPLICATION
@@ -164,10 +173,15 @@ def execute_command(command):
         speak("Goodbye")
         exit()
 
+    # LOVE
+    elif "friday" in command and "i love you" in command:
+
+        speak("Boss I love you too .. you are such a kind ...Thankyou")
+
 
 # Start assistant
 if __name__ == "__main__":
-    speak("Jarvis assistant started")
+    speak("Friday assistant started")
 
     while True:
 
@@ -177,7 +191,7 @@ if __name__ == "__main__":
             continue
 
         # WAKE WORD (optional — also accepts direct commands)
-        if "hello jarvis" in command or "hey jarvis" in command:
+        if "hello friday" in command or "hey friday" in command:
             speak("Yes, I am listening")
             command = listen()
             if not command:
