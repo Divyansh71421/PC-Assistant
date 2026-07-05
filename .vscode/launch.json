@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Jarvis",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/App.py",
+      "console": "integratedTerminal",
+      "python": "C:\\Users\\at376\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+    }
+  ]
+}
